@@ -127,7 +127,6 @@ func (c *ImClient) SendMessage(fromID, toID, body string, ope, msgType int, opt 
 		}
 	}
 	client := c.client.R()
-	c.setCommonHead(client)
 	client.SetFormData(param)
 
 	resp, err := client.Post(sendMsgPoint)
@@ -190,7 +189,6 @@ func (c *ImClient) SendBatchMessage(fromID, body string, toIDs []string, msgType
 		}
 	}
 	client := c.client.R()
-	c.setCommonHead(client)
 	client.SetFormData(param)
 
 	resp, err := client.Post(sendBatchMsgPoint)
@@ -253,7 +251,6 @@ func (c *ImClient) SendBatchAttachMsg(fromID, attach string, toIDs []string, opt
 	}
 
 	client := c.client.R()
-	c.setCommonHead(client)
 	client.SetFormData(param)
 
 	resp, err := client.Post(sendBatchAttachMsgPoint)
@@ -289,7 +286,6 @@ func (c *ImClient) RecallMessage(deleteMsgid, timetag, fromID, toID string, msgt
 	param := map[string]string{"from": fromID, "to": toID, "type": strconv.Itoa(msgtype), "timetag": timetag, "deleteMsgid": deleteMsgid, "msg": "."}
 
 	client := c.client.R()
-	c.setCommonHead(client)
 	client.SetFormData(param)
 
 	resp, err := client.Post(messageRecallPoint)

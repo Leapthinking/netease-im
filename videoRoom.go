@@ -34,7 +34,6 @@ func (c *ImClient) GetRoomInfo(roomID string) (*RoomInfo, error) {
 	param := map[string]string{"id": roomID}
 
 	client := c.client.R()
-	c.setCommonHead(client)
 	client.SetPathParams(param)
 
 	resp, err := client.Get(roomInfoPoint)
@@ -70,7 +69,6 @@ func (c *ImClient) DeleteRoom(roomID string) error {
 	param := map[string]string{"id": roomID}
 
 	client := c.client.R()
-	c.setCommonHead(client)
 	client.SetPathParams(param)
 
 	if _, err := client.Delete(roomInfoPoint); err != nil {

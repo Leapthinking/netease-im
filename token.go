@@ -63,7 +63,6 @@ func (c *ImClient) CreateImUser(u *ImUser) (*TokenInfo, error) {
 	}
 
 	client := c.client.R()
-	c.setCommonHead(client)
 	client.SetFormData(param)
 
 	resp, err := client.Post(createImUserPoint)
@@ -109,7 +108,6 @@ func (c *ImClient) RefreshToken(accid string) (*TokenInfo, error) {
 
 	param := map[string]string{"accid": accid}
 	client := c.client.R()
-	c.setCommonHead(client)
 	client.SetFormData(param)
 
 	resp, err := client.Post(refreshTokenPoint)

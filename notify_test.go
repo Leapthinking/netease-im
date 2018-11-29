@@ -19,8 +19,8 @@ func TestCheckSum(t *testing.T) {
 	md5 := Md5HashToHexString(body)
 	req.Header.Set("CurTime", curTime)
 	req.Header.Set("MD5", md5)
-	req.Header.Set("CheckSum", ShaHashToHexStringFromString(cli.AppSecret+md5+curTime))
-	t.Log("checksum:", cli.AppSecret+md5+curTime, "checksum-encoded:", ShaHashToHexStringFromString(cli.AppSecret+md5+curTime))
+	req.Header.Set("CheckSum", ShaHashToHexStringFromString(cli.appSecret+md5+curTime))
+	t.Log("checksum:", cli.appSecret+md5+curTime, "checksum-encoded:", ShaHashToHexStringFromString(cli.appSecret+md5+curTime))
 
 	bd, err := cli.GetEventNotification(req)
 	t.Log(string(bd), err)

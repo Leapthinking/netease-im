@@ -57,8 +57,8 @@ func (c *ImClient) GetEventNotification(req *http.Request) ([]byte, error) {
 		return bd, fmt.Errorf("消息抄送内容被劫持,[md5]:%s,[body]:%s,[encodedBody]:%s", md5, string(bd), ShaHashToHexString(bd))
 	}
 
-	if checkSum != ShaHashToHexStringFromString(c.AppSecret+md5+curTime) {
-		return bd, fmt.Errorf("CheckSum校验失败,[request-header-checkSum]:%s,[Checksum]:%s,[encodedChecksum]:%s", checkSum, c.AppSecret+md5+curTime, ShaHashToHexStringFromString(c.AppSecret+md5+curTime))
+	if checkSum != ShaHashToHexStringFromString(c.appSecret+md5+curTime) {
+		return bd, fmt.Errorf("CheckSum校验失败,[request-header-checkSum]:%s,[Checksum]:%s,[encodedChecksum]:%s", checkSum, c.appSecret+md5+curTime, ShaHashToHexStringFromString(c.appSecret+md5+curTime))
 	}
 	return bd, nil
 }

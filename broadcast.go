@@ -48,7 +48,6 @@ func (c *ImClient) BroadcastMsg(body, fromID string, isOffline *bool, targetOs [
 	}
 
 	client := c.client.R()
-	c.setCommonHead(client)
 	client.SetFormData(param)
 
 	resp, err := client.Post(broadcastMessagePoint)

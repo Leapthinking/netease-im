@@ -50,7 +50,6 @@ func (c *ImClient) QueryMessage(fromID, toID, beginTime, endTime string, limit, 
 	}
 
 	client := c.client.R()
-	c.setCommonHead(client)
 	client.SetFormData(param)
 
 	resp, err := client.Post(queryMessagePoint)
