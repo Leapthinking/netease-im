@@ -18,17 +18,14 @@ type ImClient struct {
 	client *resty.Client
 }
 
-type ClientOpts interface {
+type ClientOpt interface {
 	Apply(*resty.Client)
 }
 
 //CreateImClient  创建im客户端，proxy留空表示不使用代理
-func CreateImClient(appkey, appSecret, httpProxy string) *ImClient {
+func CreateImClient(appkey string, appSecret string, opts ...ClientOpt) *ImClient {
 	c := &ImClient{appKey: appkey, appSecret: appSecret, nonce: RandStringBytesMaskImprSrc(64)}
 	client := resty.New()
-	if len(httpProxy) > 0 {
-		client.SetProxy(httpProxy)
-	}
 
 	client.SetHeader("Accept", "application/json;charset=utf-8").
 		SetHeader("Content-Type", "application/x-www-form-urlencoded;charset=utf-8;").
@@ -36,6 +33,9 @@ func CreateImClient(appkey, appSecret, httpProxy string) *ImClient {
 		SetHeader("Nonce", c.nonce).
 		SetPreRequestHook(checksumHook(appSecret, c.nonce)).
 		SetTimeout(5 * time.Second)
+	for _, o := range opts {
+		o.Apply(client)
+	}
 	c.client = client
 	return c
 }
