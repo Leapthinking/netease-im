@@ -1,4 +1,4 @@
-package tests
+package netease
 
 import (
 	"strconv"

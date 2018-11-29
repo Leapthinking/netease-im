@@ -1,16 +1,14 @@
-package tests
+package netease
 
 import (
 	"encoding/json"
 	"testing"
-
-	netease "github.com/MrSong0607/netease-im"
 )
 
-var client = netease.CreateImClient("", "", "")
+var client = CreateImClient("", "", "")
 
 func TestToken(t *testing.T) {
-	user := &netease.ImUser{ID: "test1", Name: "test3", Gender: 1}
+	user := &ImUser{ID: "test1", Name: "test3", Gender: 1}
 	tk, err := client.CreateImUser(user)
 	if err != nil {
 		t.Error(err)
@@ -28,5 +26,5 @@ func TestRefreshToken(t *testing.T) {
 }
 
 func Benchmark_SyncMap(b *testing.B) {
-	netease.CreateImClient("", "", "")
+	CreateImClient("", "", "")
 }

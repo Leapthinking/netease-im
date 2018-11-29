@@ -1,14 +1,12 @@
-package tests
+package netease
 
 import (
 	"os"
 	"testing"
-
-	netease "github.com/MrSong0607/netease-im"
 )
 
 func TestSendTextMessage(t *testing.T) {
-	msg := &netease.TextMessage{Message: "message test 1"}
+	msg := &TextMessage{Message: "message test 1"}
 	err := client.SendTextMessage("1", "169143", msg, nil)
 	if err != nil {
 		t.Error(err)
@@ -16,7 +14,7 @@ func TestSendTextMessage(t *testing.T) {
 }
 
 func TestSendBatchTextMessage(t *testing.T) {
-	msg := &netease.TextMessage{Message: "message test"}
+	msg := &TextMessage{Message: "message test"}
 	str, err := client.SendBatchTextMessage("1", []string{"169143"}, msg, nil)
 	t.Log(str)
 	if err != nil {
