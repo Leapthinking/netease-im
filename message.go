@@ -313,12 +313,13 @@ func (c *ImClient) RecallMessage(deleteMsgid, timetag, fromID, toID string, msgt
 //SendAttachMsg 发送自定义系统通知
 /**
  * @param fromID 发送者accid，用户帐号，最大32字符，必须保证一个APP内唯一
- * @param toIDs ["aaa","bbb"]（JSONArray对应的accid，如果解析出错，会报414错误），限500人
+ * @param toID msgtype==0是表示accid即用户id，msgtype==1表示tid即群id
  * @param attach 自定义通知内容，第三方组装的字符串，建议是JSON串，最大长度4096字符
+   @param msgtype 0：点对点自定义通知，1：群消息自定义通知，其他返回414
  */
-func (c *ImClient) SendAttachMsg(fromID, attach string, toID string, opt *ImSendAttachMessageOption) error {
+func (c *ImClient) SendAttachMsg(fromID, attach string, toID string, msgType int, opt *ImSendAttachMessageOption) error {
 	param := map[string]string{
-		"from": fromID, "to": toID, "attach": attach,
+		"from": fromID, "to": toID, "attach": attach, "msgtype": strconv.Itoa(msgType),
 	}
 
 	if opt != nil {
