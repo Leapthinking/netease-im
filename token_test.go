@@ -5,7 +5,7 @@ import (
 	"testing"
 )
 
-var client = CreateImClient("", "", "")
+var client = CreateImClient("", "", )
 
 func TestToken(t *testing.T) {
 	user := &ImUser{ID: "test1", Name: "test3", Gender: 1}
@@ -26,5 +26,5 @@ func TestRefreshToken(t *testing.T) {
 }
 
 func Benchmark_SyncMap(b *testing.B) {
-	CreateImClient("", "", "")
+	CreateImClient("", "", )
 }

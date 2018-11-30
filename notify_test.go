@@ -11,7 +11,7 @@ import (
 
 func TestCheckSum(t *testing.T) {
 	os.Setenv("GOCACHE", "off")
-	cli := CreateImClient("b2c60dbed0ae2d3c48e6c85664836dc9", "1ed04f7d7085", "")
+	cli := CreateImClient("b2c60dbed0ae2d3c48e6c85664836dc9", "1ed04f7d7085", )
 
 	body := []byte(`{}`)
 	req, _ := http.NewRequest("POST", "http://yunxinservice.com.cn/receiveMsg.action", bytes.NewReader(body))
